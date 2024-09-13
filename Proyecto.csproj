@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\Login\controlerLogim.cs" />
+    <Compile Include="Controlador\Mascota\ContoladorAgregarMascota.cs" />
     <Compile Include="Controlador\Mascota\ControladorMascota.cs" />
     <Compile Include="Controlador\Validar\Acceso.cs" />
     <Compile Include="Controlador\Validar\Incriptar.cs" />

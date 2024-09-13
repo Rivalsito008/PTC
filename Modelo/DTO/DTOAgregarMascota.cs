@@ -1,45 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Proyecto.Modelo.DTO
-
 {
-
-    internal class DTOAgregarMascotas : dbConexion
-
+    public class DTOAgregarMascota : dbConexion
     {
+        private int idMascota;
+        private int idCliente;
+        private int idRaza;
+        private string nombreMascota;
+        private decimal peso;
+        private string genero;
+        private string dueño;
 
-        private int IdMascota;
-
-        private int IdCliente;
-
-        private int IdRaza;
-
-        private string Nombre;
-
-        private decimal Peso;
-
-        private string Genero;
-
-        private string Dueño;
-
-        public int IdMascota1 { get => IdMascota; set => IdMascota = value; }
-
-        public int IdCliente1 { get => IdCliente; set => IdCliente = value; }
-
-        public int IdRaza1 { get => IdRaza; set => IdRaza = value; }
-
-        public string Nombre1 { get => Nombre; set => Nombre = value; }
-
-        public decimal Peso1 { get => Peso; set => Peso = value; }
-
-        public string Genero1 { get => Genero; set => Genero = value; }
-        public string Dueño1 { get => Dueño; set => Dueño = value; }
-
+        public int IdMascota { get => idMascota; set => idMascota = value; }
+        public int IdCliente { get => idCliente; set => idCliente = value; }
+        public int IdRaza { get => idRaza; set => idRaza = value; }
+        public string NombreMascota { get => nombreMascota; set => nombreMascota = value; }
+        public decimal Peso { get => peso; set => peso = value; }
+        public string Genero { get => genero; set => genero = value; }
+        public string Dueño { get => dueño; set => dueño = value; }
     }
 
 }

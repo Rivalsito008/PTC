@@ -1,43 +1,44 @@
-﻿using Proyecto.Vista.AgregarMascotas;
+﻿using Proyecto.Modelo.DAO;
+using Proyecto.Vista.AgregarMascotas;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
-using Proyecto.Modelo.DAO;
-using Proyecto.Modelo.DTO;
+using System.Windows.Forms;
+
 namespace Proyecto.Controlador.Mascota
 {
-    internal class AgregarMascotaController
+    public class ControladorMascota
     {
-        FrmAgregarMascota ObjMascota;
-        //Eventos
-        public AgregarMascotaController(FrmAgregarMascota vista)
+        FrmVistaAgregarMascota ObjVistaMascota;
+        public ControladorMascota(FrmVistaAgregarMascota Vista) 
         {
-            ObjMascota = vista;
-            vista.txtDueño.KeyPress += new KeyPressEventHandler(SoloLetras);
-            vista.txtNombre.KeyPress += new KeyPressEventHandler(SoloLetras);
-            vista.txtRaza.KeyPress += new KeyPressEventHandler(SoloLetras);
-            vista.txtPeso.KeyPress += new KeyPressEventHandler(SoloNumeros);
+            ObjVistaMascota = Vista;
+
+            Vista.Load += new EventHandler(CargaInicial);
+            Vista.btnAgregar.Click += new EventHandler(AbrirFormularioAgregar);
+            Vista.btnActualizar.Click += new EventHandler(AbrirFormularioAgregar);
         }
-        //solo letras
-        private void SoloLetras(object sender, KeyPressEventArgs e)
+        void CargaInicial(object sender, EventArgs e)
         {
-            // Permitir solo letras y un único espacio
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ' ')
-            {
-                e.Handled = true;
-            }
+            MostrarTabla();
         }
-        //solo numeros
-        private void SoloNumeros(object sender, KeyPressEventArgs e)
+
+        void MostrarTabla()
         {
-            // Permitir solo números y la tecla de retroceso
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true;
-            }
+            DAOAgregarMascota daoM = new DAOAgregarMascota();
+            DataSet ds = daoM.MostrarTabla();
+            ObjVistaMascota.dgvMascotas.DataSource = ds.Tables["ViewAgregarMascotas"];
         }
+
+        private void AbrirFormularioAgregar(object sender, EventArgs e)
+        {
+            // Crear una instancia del formulario que quieres mostrar
+            FrmAgregarMascota formulario = new FrmAgregarMascota();
+            formulario.ShowDialog();
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Modelo
 {
-    internal class dbConexion
+    public class dbConexion
     {
         public static SqlConnection getConnection()
         {
